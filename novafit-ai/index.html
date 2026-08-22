@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Novafit AI — Virtual Try-On</title>
+<meta name="description" content="Probador virtual de ropa en tiempo real, procesado localmente en tu navegador." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- ============== ERROR BANNER (global) ============== -->
+<div id="error-banner" class="hidden" role="alert">
+  <span id="error-message"></span>
+  <button id="error-close" aria-label="Cerrar">✕</button>
+</div>
+
+<!-- ============== WELCOME SCREEN ============== -->
+<section id="welcome-screen">
+  <header class="welcome-header">
+    <div class="brand">
+      <img src="assets/novafit-logo.png" alt="Novafit AI" class="brand-logo" />
+      <span class="brand-sub">Virtual Try-On</span>
+    </div>
+    <div class="privacy-pill">🔒 Procesado localmente en tu dispositivo</div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-copy">
+      <p class="hero-eyebrow">// pose_tracking · real_time · on_device</p>
+      <h1>Pruébate la ropa <em>antes</em> de comprarla.</h1>
+      <p>Novafit AI detecta tu cuerpo en tiempo real con visión por computador
+        directamente en tu navegador y superpone la prenda que elijas — sin
+        subir tu video a ningún servidor.</p>
+      <div class="cta-row">
+        <button id="start-btn" class="btn-primary">START VIRTUAL TRY-ON</button>
+        <span class="cta-note">Requiere cámara · Chrome / Edge recomendado</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1A1D26"/>
+            <stop offset="1" stop-color="#0A0B0F"/>
+          </linearGradient>
+        </defs>
+        <rect width="300" height="400" fill="url(#g1)"/>
+        <g stroke="#3A3D4C" stroke-width="1" opacity="0.5">
+          <line x1="0" y1="80" x2="300" y2="80"/>
+          <line x1="0" y1="200" x2="300" y2="200"/>
+          <line x1="0" y1="320" x2="300" y2="320"/>
+        </g>
+        <g stroke="#00E6A8" stroke-width="2" fill="none" opacity="0.9">
+          <circle cx="150" cy="70" r="18"/>
+          <line x1="150" y1="88" x2="150" y2="200"/>
+          <line x1="150" y1="110" x2="95" y2="150"/>
+          <line x1="95" y1="150" x2="80" y2="210"/>
+          <line x1="150" y1="110" x2="205" y2="150"/>
+          <line x1="205" y1="150" x2="220" y2="210"/>
+          <line x1="150" y1="200" x2="115" y2="200"/>
+          <line x1="150" y1="200" x2="185" y2="200"/>
+          <line x1="115" y1="200" x2="105" y2="320"/>
+          <line x1="185" y1="200" x2="195" y2="320"/>
+        </g>
+        <g fill="#7B61FF">
+          <circle cx="150" cy="110" r="4"/>
+          <circle cx="115" cy="200" r="4"/>
+          <circle cx="185" cy="200" r="4"/>
+          <circle cx="95" cy="150" r="3.5"/>
+          <circle cx="205" cy="150" r="3.5"/>
+        </g>
+        <g font-family="JetBrains Mono, monospace" font-size="9" fill="#8A8F9C">
+          <text x="200" y="112">SHOULDER_R</text>
+          <text x="8" y="152">ELBOW_L</text>
+          <text x="190" y="205">HIP_R</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="limits-strip">
+    <div>
+      <p class="level-tag">NIVEL 1 — MVP</p>
+      <h3>Pose + overlay</h3>
+      <p>Pose estimation, segmentación de silueta y superposición de la prenda con transformación afín. Es lo que corre hoy.</p>
+    </div>
+    <div>
+      <p class="level-tag">NIVEL 2</p>
+      <h3>VTO avanzado</h3>
+      <p>Cloth warping no lineal, human parsing por partes del cuerpo y oclusión precisa brazo/torso.</p>
+    </div>
+    <div>
+      <p class="level-tag">NIVEL 3</p>
+      <h3>AI generativo</h3>
+      <p>Modelos de difusión (IDM-VTON, CatVTON) con inferencia GPU en backend para foto-realismo total.</p>
+    </div>
+    <div>
+      <p class="level-tag">NIVEL 4</p>
+      <h3>Producto comercial</h3>
+      <p>Catálogo conectado a tienda, infraestructura cloud escalable, analítica y seguridad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== APP SCREEN ============== -->
+<section id="app-screen" class="hidden">
+  <header class="app-header">
+    <div class="brand">
+      <img src="assets/novafit-logo.png" alt="Novafit AI" class="brand-logo brand-logo-sm" />
+    </div>
+    <div class="status-badges">
+      <span id="status-camera" class="badge">Camera Off</span>
+      <span id="status-ai" class="badge">AI Idle</span>
+      <span id="status-body" class="badge">Body Not Detected</span>
+    </div>
+  </header>
+
+  <div class="app-main">
+    <div id="camera-stage">
+      <video id="camera-video" playsinline muted></video>
+      <canvas id="render-canvas"></canvas>
+
+      <div class="stage-overlay-top">
+        <span id="guidance-text">Colócate frente a la cámara</span>
+        <span id="fps-counter">0 FPS</span>
+      </div>
+
+      <div class="controls-bar">
+        <button class="ctrl-btn" id="btn-switch-camera" title="Cambiar cámara" aria-label="Cambiar cámara">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        </button>
+        <button class="ctrl-btn active" id="btn-mirror" title="Espejo" aria-label="Alternar espejo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="22"/><path d="M18 6l4 6-4 6"/><path d="M6 6l-4 6 4 6"/></svg>
+        </button>
+        <button class="ctrl-btn" id="btn-skeleton" title="Ver puntos de pose (debug)" aria-label="Alternar esqueleto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><path d="M12 7v6l-4 6M12 13l4 6M8 10h8"/></svg>
+        </button>
+        <button class="ctrl-btn ai-btn" id="btn-photoreal" title="Generar foto realista con IA (Nivel 3 — usa un modelo de difusión en la nube, tarda ~20s)" aria-label="Generar foto realista con IA">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></svg>
+        </button>
+        <button class="ctrl-btn primary" id="btn-take-photo" title="Tomar foto" aria-label="Tomar foto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </button>
+        <button class="ctrl-btn" id="btn-fullscreen" title="Pantalla completa" aria-label="Pantalla completa">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+        </button>
+        <button class="ctrl-btn" id="btn-stop-camera" title="Detener cámara" aria-label="Detener cámara">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.9" y1="4.9" x2="19.1" y2="19.1"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <aside class="side-panel">
+      <div class="side-panel-header">
+        <h2>Selecciona tu prenda</h2>
+        <p>La prenda se ajusta a tu cuerpo y sigue tu movimiento.</p>
+      </div>
+      <div class="category-tabs" id="category-tabs"></div>
+      <div id="garment-grid"></div>
+      <div class="side-panel-footer">
+        <button id="remove-garment-btn" class="btn-remove" disabled>Quitar prenda</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ============== PHOTO MODAL ============== -->
+<div id="photo-modal" class="modal hidden">
+  <div class="modal-card">
+    <div id="photo-loading" class="photo-loading hidden">
+      <div class="spinner"></div>
+      <p id="photo-loading-text">Generando con IA...</p>
+    </div>
+    <img id="photo-result" alt="Resultado capturado" />
+    <div class="modal-actions">
+      <button id="btn-retake">Retake</button>
+      <button id="btn-try-another" class="primary">Try another garment</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/chatbot.js"></script>
+</body>
+</html>

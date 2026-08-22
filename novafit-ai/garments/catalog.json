@@ -1,0 +1,458 @@
+{
+  "categories": [
+    {
+      "id": "tshirt",
+      "label": "Camisetas"
+    },
+    {
+      "id": "shirt",
+      "label": "Camisas"
+    },
+    {
+      "id": "jacket",
+      "label": "Chaquetas"
+    },
+    {
+      "id": "hoodie",
+      "label": "Hoodies"
+    },
+    {
+      "id": "jeans",
+      "label": "Jeans"
+    }
+  ],
+  "items": [
+    {
+      "id": "black-tshirt",
+      "name": "Black Tee",
+      "category": "tshirt",
+      "region": "upper_body",
+      "color": "black",
+      "colorHex": "#18181C",
+      "image": "garments/tshirts/black.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "white-tshirt",
+      "name": "White Tee",
+      "category": "tshirt",
+      "region": "upper_body",
+      "color": "white",
+      "colorHex": "#F5F5F8",
+      "image": "garments/tshirts/white.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "blue-tshirt",
+      "name": "Blue Tee",
+      "category": "tshirt",
+      "region": "upper_body",
+      "color": "blue",
+      "colorHex": "#2E5BD6",
+      "image": "garments/tshirts/blue.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "red-tshirt",
+      "name": "Red Tee",
+      "category": "tshirt",
+      "region": "upper_body",
+      "color": "red",
+      "colorHex": "#D6303E",
+      "image": "garments/tshirts/red.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "white-shirt",
+      "name": "Classic White Shirt",
+      "category": "shirt",
+      "region": "upper_body",
+      "color": "white",
+      "colorHex": "#F0F0F4",
+      "image": "garments/shirts/white.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "lightblue-shirt",
+      "name": "Chambray Blue Shirt",
+      "category": "shirt",
+      "region": "upper_body",
+      "color": "lightblue",
+      "colorHex": "#96BDE3",
+      "image": "garments/shirts/lightblue.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "black-shirt",
+      "name": "Black Button-Up",
+      "category": "shirt",
+      "region": "upper_body",
+      "color": "black",
+      "colorHex": "#1E1E22",
+      "image": "garments/shirts/black.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "black-jacket",
+      "name": "Bomber Negra",
+      "category": "jacket",
+      "region": "upper_body",
+      "color": "black",
+      "colorHex": "#141418",
+      "image": "garments/jackets/black.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "olive-jacket",
+      "name": "Chaqueta Olive",
+      "category": "jacket",
+      "region": "upper_body",
+      "color": "olive",
+      "colorHex": "#555C44",
+      "image": "garments/jackets/olive.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "denim-jacket",
+      "name": "Chaqueta Denim",
+      "category": "jacket",
+      "region": "upper_body",
+      "color": "denim",
+      "colorHex": "#425B85",
+      "image": "garments/jackets/denim.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "gray-hoodie",
+      "name": "Hoodie Gris",
+      "category": "hoodie",
+      "region": "upper_body",
+      "color": "gray",
+      "colorHex": "#6E7076",
+      "image": "garments/hoodies/gray.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "black-hoodie",
+      "name": "Hoodie Negro",
+      "category": "hoodie",
+      "region": "upper_body",
+      "color": "black",
+      "colorHex": "#121216",
+      "image": "garments/hoodies/black.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "maroon-hoodie",
+      "name": "Hoodie Vinotinto",
+      "category": "hoodie",
+      "region": "upper_body",
+      "color": "maroon",
+      "colorHex": "#6E2830",
+      "image": "garments/hoodies/maroon.png",
+      "anchors": {
+        "top_left": [
+          172,
+          150
+        ],
+        "top_right": [
+          428,
+          150
+        ],
+        "bottom_left": [
+          150,
+          660
+        ],
+        "bottom_right": [
+          450,
+          660
+        ]
+      }
+    },
+    {
+      "id": "blue-jeans",
+      "name": "Jean Azul Clásico",
+      "category": "jeans",
+      "region": "lower_body",
+      "color": "blue",
+      "colorHex": "#3A4E7A",
+      "image": "garments/jeans/blue.png",
+      "anchors": {
+        "top_left": [
+          200,
+          70
+        ],
+        "top_right": [
+          400,
+          70
+        ],
+        "bottom_left": [
+          225,
+          780
+        ],
+        "bottom_right": [
+          375,
+          780
+        ]
+      }
+    },
+    {
+      "id": "black-jeans",
+      "name": "Jean Negro",
+      "category": "jeans",
+      "region": "lower_body",
+      "color": "black",
+      "colorHex": "#1C1C20",
+      "image": "garments/jeans/black.png",
+      "anchors": {
+        "top_left": [
+          200,
+          70
+        ],
+        "top_right": [
+          400,
+          70
+        ],
+        "bottom_left": [
+          225,
+          780
+        ],
+        "bottom_right": [
+          375,
+          780
+        ]
+      }
+    },
+    {
+      "id": "lightwash-jeans",
+      "name": "Jean Light Wash",
+      "category": "jeans",
+      "region": "lower_body",
+      "color": "lightwash",
+      "colorHex": "#8CA3C4",
+      "image": "garments/jeans/lightwash.png",
+      "anchors": {
+        "top_left": [
+          200,
+          70
+        ],
+        "top_right": [
+          400,
+          70
+        ],
+        "bottom_left": [
+          225,
+          780
+        ],
+        "bottom_right": [
+          375,
+          780
+        ]
+      }
+    }
+  ]
+}
